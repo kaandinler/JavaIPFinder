@@ -3,8 +3,12 @@ package com.kaandinler;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -81,11 +85,9 @@ public class IPFinder extends JFrame implements ActionListener {
         try {
             //include .com if it hasn't included.
             String url = jTextField.getText().trim().toLowerCase();
-            if(!url.endsWith(".com")){
-                url += ".com";
-            }else if(url.contains("\\s+")){
-                url = url.replace("\\s+","");
-            }
+            if(!url.endsWith(".com")) url += ".com";
+
+            url = url.replace(" ","");
             //set url
             setUrl(url);
 
@@ -96,6 +98,15 @@ public class IPFinder extends JFrame implements ActionListener {
             //Showing ip address and host name that are written.
             jResult.setForeground(foundColor);
             jResult.setText(getHostName() + " : " + getIP4Address());
+
+            jResult.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    StringSelection selection = new StringSelection(getIP4Address());
+                    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                    clipboard.setContents(selection, selection);
+                }
+            });
 
             }catch (UnknownHostException e) {
                 e.printStackTrace();
