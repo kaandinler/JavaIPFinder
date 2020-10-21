@@ -1,8 +1,8 @@
 package com.kaandinler;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
+import java.awt.Toolkit;
+import java.awt.Color;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
@@ -18,12 +18,10 @@ public class IPFinder extends JFrame implements ActionListener {
     private String hostName;
     private String url;
 
-    private JLabel jLabel;
-    private JTextField jTextField;
-    private JButton jButton;
-    private JLabel jResult;
+    private final JTextField jTextField;
+    private final JLabel jResult;
 
-    private Color foundColor;
+    private final Color foundColor;
 
     //Constructor
     public IPFinder(){
@@ -33,7 +31,7 @@ public class IPFinder extends JFrame implements ActionListener {
 
         //start construction of the jFrame.
 
-        jLabel = new JLabel("Enter website URL: (click on the result to copy)" );
+        JLabel jLabel = new JLabel("Enter website URL: (click on the result to copy)");
         jLabel.setBounds(80,75,300,20);
 
         jResult = new JLabel("");
@@ -43,7 +41,7 @@ public class IPFinder extends JFrame implements ActionListener {
         jTextField.setBounds(80,100,250,25);
         jTextField.setToolTipText(".com is auto added");
 
-        jButton = new JButton("Find IP");
+        JButton jButton = new JButton("Find IP");
         jButton.setBounds(110,130, 170,30);
         jButton.addActionListener(this);
 
@@ -98,7 +96,7 @@ public class IPFinder extends JFrame implements ActionListener {
 
             //Showing ip address and host name that are written.
             jResult.setForeground(foundColor);
-            jResult.setText(hostName+ " : " + IP4Address);
+            jResult.setText(getHostName()+ " : " + getIP4Address());
 
             //copy the result when clicked
             jResult.addMouseListener(new MouseAdapter() {
