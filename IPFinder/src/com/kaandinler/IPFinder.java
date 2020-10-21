@@ -33,18 +33,18 @@ public class IPFinder extends JFrame implements ActionListener {
 
         //start construction of the jFrame.
 
-        jLabel = new JLabel("Enter website URL:");
-        jLabel.setBounds(50,75,150,20);
+        jLabel = new JLabel("Enter website URL: (click on the result to copy)" );
+        jLabel.setBounds(80,75,300,20);
 
         jResult = new JLabel("");
-        jResult.setBounds(50,170, 250,20);
+        jResult.setBounds(110,170, 250,20);
 
         jTextField = new JTextField();
-        jTextField.setBounds(50,100,200,20);
+        jTextField.setBounds(80,100,250,25);
         jTextField.setToolTipText(".com is auto added");
 
         jButton = new JButton("Find IP");
-        jButton.setBounds(50,130, 200,30);
+        jButton.setBounds(110,130, 170,30);
         jButton.addActionListener(this);
 
         //Adding components
@@ -53,7 +53,7 @@ public class IPFinder extends JFrame implements ActionListener {
         add(jButton);
         add(jResult);
 
-        setSize(310,300); // setting width and height of the frame
+        setSize(410,280); // setting width and height of the frame
         setLocationRelativeTo(null); // setting position of the frame
         setLayout(null);
         setVisible(true);
