@@ -53,6 +53,7 @@ public class IPFinder extends JFrame implements ActionListener {
         add(jButton);
         add(jResult);
 
+        //set the screen size
         setSize(410,280); // setting width and height of the frame
         setLocationRelativeTo(null); // setting position of the frame
         setLayout(null);
@@ -97,8 +98,9 @@ public class IPFinder extends JFrame implements ActionListener {
 
             //Showing ip address and host name that are written.
             jResult.setForeground(foundColor);
-            jResult.setText(getHostName() + " : " + getIP4Address());
+            jResult.setText(hostName+ " : " + IP4Address);
 
+            //copy the result when clicked
             jResult.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -107,12 +109,13 @@ public class IPFinder extends JFrame implements ActionListener {
                     clipboard.setContents(selection, selection);
                 }
             });
-
+            //catch there is no such a website
             }catch (UnknownHostException e) {
                 e.printStackTrace();
                 jResult.setForeground(Color.RED);
                 jResult.setText("No such a website!");
             }
+            //catch other exceptions
             catch (Exception e){
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null,e.getMessage());
